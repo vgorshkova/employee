@@ -3,51 +3,51 @@ import * as http from '../services/http-request';
 import {
 	SEND_REQUEST,
 	RECEIVE_REQUEST,
-	ADD_DEPARTMENT,
-	EDIT_DEPARTMENT,
-	SET_DEPARTMENTS,
-	REMOVE_DEPARTMENT,
-	DELETE_ALL_DEPARTMENTS
+	ADD_EMPLOYEE,
+	EDIT_EMPLOYEE,
+	SET_EMPLOYEES,
+	REMOVE_EMPLOYEE,
+	DELETE_ALL_EMPLOYEES
 } from '../constants/ActionTypes';
 
-export function addDepartment(department) {
+export function addEmployee(employee) {
 	return ({
-		type: ADD_DEPARTMENT,
+		type: ADD_EMPLOYEE,
 		payload: {
-			department
+			employee
 		}
 	});
 }
 
-export function setDepartments(departments) {
+export function setEmployees(employees) {
 	return ({
-		type: SET_DEPARTMENTS,
+		type: SET_EMPLOYEES,
 		payload: {
-			departments
+			employees
 		}
 	});
 }
 
-export function editDepartment(department) {
+export function editEmployee(employee) {
 	return ({
-		type: EDIT_DEPARTMENT,
+		type: EDIT_EMPLOYEE,
 		payload: {
-			department
+			employee
 		}
 	});
 }
 
-export function removeDepartment(id) {
+export function removeEmployee(id) {
 	return ({
-		type: REMOVE_DEPARTMENT,
+		type: REMOVE_EMPLOYEE,
 		payload: {
 			id
 		}
 	});
 }
 
-export function deleteAllDepartments () {
-	return ({type: DELETE_ALL_DEPARTMENTS});
+export function deleteAllEmployees () {
+	return ({type: DELETE_ALL_EMPLOYEES});
 }
 
 export function sendRequest() {
@@ -62,38 +62,25 @@ export function receiveRequest() {
 	});
 }
 
-export function createDepartment( department ) {
+export function createEmployee( employee ) {
 	return dispatch => {
 		dispatch(sendRequest());
-		http.post("/departments", department)
-			.then(response => {
-					dispatch(addDepartment(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-	}
-}
-
-export function getDepartments() {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.get("/departments")
-			.then(response => {
-					dispatch(setDepartments(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
-}
-
-export function deleteDepartment(department) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.del(`/departments/${department.id}`)
+		http.post("/employees", employee)
 			.then(response => {
 				debugger;
-					dispatch(removeDepartment(response.data.id));
+					dispatch(addEmployee(response.data));
+					dispatch(receiveRequest());
+				}
+			)
+	}
+}
+
+export function getEmployees() {
+	return dispatch => {
+		dispatch(sendRequest());
+		http.get("/employees")
+			.then(response => {
+					dispatch(setEmployees(response.data));
 					dispatch(receiveRequest());
 				}
 			)
@@ -101,12 +88,26 @@ export function deleteDepartment(department) {
 	}
 }
 
-export function updateDepartment(department) {
+export function deleteEmployee(employee) {
 	return dispatch => {
 		dispatch(sendRequest());
-		http.put(`/departments/${department.id}`, department)
+		http.del(`/employees/${employee.id}`)
 			.then(response => {
-					dispatch(editDepartment(response.data));
+					dispatch(removeEmployee(employee.id));
+					dispatch(receiveRequest());
+				}
+			)
+			.catch( error => (console.log(error)))
+	}
+}
+
+export function updateEmployee(employee) {
+	return dispatch => {
+		dispatch(sendRequest());
+		http.put(`/employees/${employee.id}`, employee)
+			.then(response => {
+				debugger;
+					dispatch(editEmployee(response.data));
 					dispatch(receiveRequest());
 				}
 			)

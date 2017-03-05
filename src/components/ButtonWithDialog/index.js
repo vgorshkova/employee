@@ -1,7 +1,7 @@
 import React from 'react';
-import {FormGroup} from 'react-bootstrap';
-import {FormDialog, FieldGroup} from '../../components';
-import {mode as Mode} from '../../constants/common';
+import { FormGroup } from 'react-bootstrap';
+import { FormDialog, FieldGroup, SelectGroup } from '../../components';
+import { mode as Mode, optionsType } from '../../constants/common';
 
 export default class ButtonWithDialog extends React.Component {
 	constructor(props) {
@@ -71,21 +71,31 @@ export default class ButtonWithDialog extends React.Component {
 	};
 
 	handleChange = (propName, e) => {
-		this.setState({
-			item: {
-				...this.state.item,
-				[propName]: e.target.value
-			}
-		});
+		const propId = this.props.fieldsOptions[propName].propId;
+
+		if (propId) {
+			this.setState({
+				item: {
+					...this.state.item,
+					[propId]: e.target.value
+				}
+			})
+		} else {
+			this.setState({
+				item: {
+					...this.state.item,
+					[propName]: e.target.value
+				}
+			})
+		};
 	};
 
 	onAction = () => {
+		debugger;
 		if (this.props.mode === Mode.delete || this.validate()) {
-
 			this.props.onAction(this.state.item);
 			return true;
 		}
-
 		return false;
 	};
 
@@ -93,23 +103,41 @@ export default class ButtonWithDialog extends React.Component {
 		this.initState(this.props);
 	};
 
+
 	render() {
-		const {fieldsOptions, mode, icon} = this.props;
+		const {fieldsOptions, mode, icon, options} = this.props;
 		let modalBodyElements = {};
 
+
 		if (mode === Mode.update || mode === Mode.create) {
-			modalBodyElements = this.propNames.map(propName => (
-				<FieldGroup
-					key={`${fieldsOptions[propName].label}_id`}
-					id={`${fieldsOptions[propName].label}_id`}
-					label={fieldsOptions[propName].label}
-					type={fieldsOptions[propName].type}
-					validationState={this.isRequiredProps.indexOf(propName) !== -1 ? this.getValidationState(propName) : null}
-					value={this.state.item[propName]}
-					placeholder={fieldsOptions[propName].label}
-					onChange={this.handleChange.bind(this, propName)}
-				/>
-			));
+			modalBodyElements = this.propNames.map(propName => {
+
+				if (fieldsOptions[propName].fieldType === optionsType.select) {
+					const propId = this.props.fieldsOptions[propName].propId;
+
+					return (
+						<SelectGroup
+							key={`${propName}_id`}
+							id={`${propName}_id`}
+							value={this.state.item[propId] || ''}
+							label={fieldsOptions[propName].label}
+							options={options && options[propName]}
+							placeholder={`Select ${fieldsOptions[propName].label}...`}
+							onChange={this.handleChange.bind(this, propName)}
+						/>)
+				} else {
+					return (
+						<FieldGroup
+							key={`${propName}_id`}
+							id={`${propName}_id`}
+							label={fieldsOptions[propName].label}
+							validationState={this.isRequiredProps.indexOf(propName) !== -1 ? this.getValidationState(propName) : null}
+							value={this.state.item[propName]}
+							placeholder={fieldsOptions[propName].label}
+							onChange={this.handleChange.bind(this, propName)}
+						/>)
+				}
+			});
 		}
 
 		if (mode === Mode.delete) {

@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.idea
+public
+invoices.sqlite
+public/*.hot-update.js
+public/*.hot-update.json

@@ -1,0 +1,49 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "Department 5"
+    },
+    {
+      "name": "Department 2",
+      "id": 2
+    },
+    {
+      "name": "Cool dep",
+      "id": 3
+    },
+    {
+      "name": "fgdfgdf",
+      "id": 4
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Ivan",
+      "lastName": "Ivanov",
+      "departmentId": "1"
+    },
+    {
+      "id": 2,
+      "firstName": "Marya",
+      "lastName": "Ivanova",
+      "departmentId": "3",
+      "departmentName": "Cool dep"
+    },
+    {
+      "lastName": "i",
+      "firstName": "i",
+      "departmentName": "",
+      "departmentId": "2",
+      "id": 3
+    },
+    {
+      "lastName": "efd",
+      "firstName": "erd",
+      "departmentName": "Cool dep",
+      "departmentId": "4",
+      "id": 4
+    }
+  ]
+}

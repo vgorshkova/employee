@@ -1,19 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import app from './app.reducer';
-import customers from './customers.reducer';
-import products from './products.reducer';
-import invoices from './invoices.reducer';
-import invoiceItems from './invoiceItems.reducer';
-import initialInvoiceItems from './initialInvoiceItems.reducer';
+import departments from './departments.reducer';
+import employees from './employees.reducer';
 
 const reducer = combineReducers({
 	app,
-	customers,
-	products,
-	invoices,
-	invoiceItems,
-	initialInvoiceItems,
+	departments,
+	employees,
 	routing: routerReducer,
 });
 

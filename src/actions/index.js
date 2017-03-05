@@ -1,3 +1,7 @@
-/**
- * Created by Winter on 04.03.2017.
- */
+import * as departmentsActions from './departments.actions';
+import * as employeesActions from './employees.actions';
+
+export {
+	departmentsActions,
+	employeesActions,
+}

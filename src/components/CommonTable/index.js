@@ -8,20 +8,19 @@ import commonS from '../../styles/style.less';
 
 export default function CommonTable({
 	title,
-	isLinked,
 	items,
+	options,
 	fieldsOptions,
 	onCreateItem, onDeleteItem, onUpdateItem,
-	toCreateLink, toUpdateLink
 	}) {
 
 	const commonTableTitle =
 		<CommonTableTitle
-			isLinked={isLinked}
 			title={title}
 			fieldsOptions={fieldsOptions}
 			onCreateItem={onCreateItem}
-			toCreateLink={toCreateLink}
+			options={options}
+			mode={mode.create}
 		/>;
 
 	if (!(items && items.length)) {
@@ -58,23 +57,19 @@ export default function CommonTable({
 					})
 				}
 				<td key={`ButtonGroup_${item.id}`} className={s.tdButtons}>
-					{
-						isLinked ?
-							<Link className={commonS.buttonLink} to={`${toUpdateLink}/${item.id}`}>
-								<Button className={commonS.smallIconButton}>
-									{editIcon}
-								</Button>
-							</Link>
-							:
-							<ButtonWithDialog
-								onAction={onUpdateItem}
-								fieldsOptions={fieldsOptions}
-								mode={mode.update}
-								icon={editIcon}
-								item={item}
-							/>
-					}
+
 					<ButtonWithDialog
+						key='ButtonWithDialog_update'
+						onAction={onUpdateItem}
+						fieldsOptions={fieldsOptions}
+						options={options}
+						mode={mode.update}
+						icon={editIcon}
+						item={item}
+					/>
+
+					<ButtonWithDialog
+						key='ButtonWithDialog_delete'
 						onAction={onDeleteItem}
 						mode={mode.delete}
 						icon={deleteIcon}

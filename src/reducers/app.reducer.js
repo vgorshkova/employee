@@ -1,4 +1,3 @@
-//import { createReducer } from 'redux-act';
 import {
 	SEND_REQUEST,
 	RECEIVE_REQUEST,

@@ -3,8 +3,9 @@
 // 'canEdit' - prop will be showen on the form/dialog for add/update item
 // 'isRequired' - prop needs to be not empty
 // 'sortId' - prop determines the fields sequence
+// 'fieldType' : select - if field is selected from the list
 //
-export const tableCustomerOptions = {
+export const departmentOptions = {
 	id: {
 		label: "id",
 		sortId: 5,
@@ -15,63 +16,37 @@ export const tableCustomerOptions = {
 		sortId: 10,
 		canEdit: true,
 		isRequired: true,
-	},
-	address: {
-		label: "Address",
-		sortId: 25,
-		canEdit: true,
-	},
-	phone: {
-		label: "Phone",
-		sortId: 20,
-		canEdit: true,
 	}
 };
 
-export const tableProductOptions = {
+export const employeeOptions = {
 	id: {
 		label: "id",
 		sortId: 5,
 		canEdit: false,
 	},
-	name: {
-		label: "Name",
-		sortId: 10,
+	departmentId: {
+		label: "Department id",
+		sortId: 7,
+		canEdit: false,
+	},
+	firstName: {
+		label: "First Name",
+		sortId: 15,
 		canEdit: true,
 		isRequired: true,
 	},
-	price: {
-		label: "Price",
-		sortId: 15,
-		canEdit: true,
-		type: "number"
-	},
-};
-
-export const invoiceOptions = {
-	id: {
-		label: "id",
-		sortId: 5,
-		canEdit: false,
-	},
-	customerId: {
-		label: "CustomerId",
+	lastName: {
+		label: "Last Name",
 		sortId: 10,
-	},
-	customerName: {
-		label: "Customer",
-		sortId: 12,
 		canEdit: true,
-	},
-	discount: {
-		label: "Discount",
-		sortId: 15,
-		canEdit: true,
-		type: "number",
-	},
-	total: {
-		label: "Total",
+		isRequired: true,
+		},
+	departmentName: {
+		label: "Department Name",
 		sortId: 20,
 		canEdit: true,
+		fieldType: "select",
+		propId: 'departmentId'
 	},
 };
