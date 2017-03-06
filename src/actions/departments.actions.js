@@ -1,25 +1,20 @@
-import * as http from '../services/http-request';
-
 import {
 	SEND_REQUEST,
 	RECEIVE_REQUEST,
+
 	ADD_DEPARTMENT,
 	EDIT_DEPARTMENT,
-	SET_DEPARTMENTS,
 	REMOVE_DEPARTMENT,
-	DELETE_ALL_DEPARTMENTS
+	SET_DEPARTMENTS,
+
+	GET_DEPARTMENTS,
+	DEPARTMENTS_RECEIVED,
+	CREATE_DEPARTMENT,
+	DELETE_DEPARTMENT,
+	UPDATE_DEPARTMENT,
 } from '../constants/ActionTypes';
 
-export function addDepartment(department) {
-	return ({
-		type: ADD_DEPARTMENT,
-		payload: {
-			department
-		}
-	});
-}
-
-export function setDepartments(departments) {
+export function setDepartments( departments ) {
 	return ({
 		type: SET_DEPARTMENTS,
 		payload: {
@@ -28,7 +23,16 @@ export function setDepartments(departments) {
 	});
 }
 
-export function editDepartment(department) {
+export function addDepartment( department ) {
+	return ({
+		type: ADD_DEPARTMENT,
+		payload: {
+			department
+		}
+	});
+}
+
+export function editDepartment( department ) {
 	return ({
 		type: EDIT_DEPARTMENT,
 		payload: {
@@ -37,17 +41,13 @@ export function editDepartment(department) {
 	});
 }
 
-export function removeDepartment(id) {
+export function removeDepartment( id ) {
 	return ({
 		type: REMOVE_DEPARTMENT,
 		payload: {
 			id
 		}
 	});
-}
-
-export function deleteAllDepartments () {
-	return ({type: DELETE_ALL_DEPARTMENTS});
 }
 
 export function sendRequest() {
@@ -63,53 +63,35 @@ export function receiveRequest() {
 }
 
 export function createDepartment( department ) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.post("/departments", department)
-			.then(response => {
-					dispatch(addDepartment(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-	}
+	return ({
+		type: CREATE_DEPARTMENT,
+		payload: {
+			department
+		}
+	});
 }
 
 export function getDepartments() {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.get("/departments")
-			.then(response => {
-					dispatch(setDepartments(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+	return ({
+		type: GET_DEPARTMENTS,
+	});
 }
 
-export function deleteDepartment(department) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.del(`/departments/${department.id}`)
-			.then(response => {
-					dispatch(removeDepartment(department.id));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+export function deleteDepartment( department ) {
+	return ({
+		type: DELETE_DEPARTMENT,
+		payload: {
+			id: department.id
+		}
+	});
 }
 
-export function updateDepartment(department) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.put(`/departments/${department.id}`, department)
-			.then(response => {
-					dispatch(editDepartment(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+export function updateDepartment( department ) {
+	return ({
+		type: UPDATE_DEPARTMENT,
+		payload: {
+			department
+		}
+	});
 }
 

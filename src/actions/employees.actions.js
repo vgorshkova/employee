@@ -1,5 +1,3 @@
-import * as http from '../services/http-request';
-
 import {
 	SEND_REQUEST,
 	RECEIVE_REQUEST,
@@ -7,10 +5,14 @@ import {
 	EDIT_EMPLOYEE,
 	SET_EMPLOYEES,
 	REMOVE_EMPLOYEE,
-	DELETE_ALL_EMPLOYEES
+
+	CREATE_EMPLOYEE,
+	UPDATE_EMPLOYEE,
+	DELETE_EMPLOYEE,
+	GET_EMPLOYEES,
 } from '../constants/ActionTypes';
 
-export function addEmployee(employee) {
+export function addEmployee( employee ) {
 	return ({
 		type: ADD_EMPLOYEE,
 		payload: {
@@ -19,7 +21,7 @@ export function addEmployee(employee) {
 	});
 }
 
-export function setEmployees(employees) {
+export function setEmployees( employees ) {
 	return ({
 		type: SET_EMPLOYEES,
 		payload: {
@@ -28,7 +30,7 @@ export function setEmployees(employees) {
 	});
 }
 
-export function editEmployee(employee) {
+export function editEmployee( employee ) {
 	return ({
 		type: EDIT_EMPLOYEE,
 		payload: {
@@ -37,17 +39,13 @@ export function editEmployee(employee) {
 	});
 }
 
-export function removeEmployee(id) {
+export function removeEmployee( id ) {
 	return ({
 		type: REMOVE_EMPLOYEE,
 		payload: {
 			id
 		}
 	});
-}
-
-export function deleteAllEmployees () {
-	return ({type: DELETE_ALL_EMPLOYEES});
 }
 
 export function sendRequest() {
@@ -63,55 +61,35 @@ export function receiveRequest() {
 }
 
 export function createEmployee( employee ) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.post("/employees", employee)
-			.then(response => {
-				debugger;
-					dispatch(addEmployee(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-	}
+	return ({
+		type: CREATE_EMPLOYEE,
+		payload: {
+			employee
+		}
+	});
 }
 
 export function getEmployees() {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.get("/employees")
-			.then(response => {
-					dispatch(setEmployees(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+	return ({
+		type: GET_EMPLOYEES,
+	});
 }
 
-export function deleteEmployee(employee) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.del(`/employees/${employee.id}`)
-			.then(response => {
-					dispatch(removeEmployee(employee.id));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+export function deleteEmployee( employee ) {
+	return ({
+		type: DELETE_EMPLOYEE,
+		payload: {
+			id: employee.id
+		}
+	});
 }
 
-export function updateEmployee(employee) {
-	return dispatch => {
-		dispatch(sendRequest());
-		http.put(`/employees/${employee.id}`, employee)
-			.then(response => {
-				debugger;
-					dispatch(editEmployee(response.data));
-					dispatch(receiveRequest());
-				}
-			)
-			.catch( error => (console.log(error)))
-	}
+export function updateEmployee( employee ) {
+	return ({
+		type: UPDATE_EMPLOYEE,
+		payload: {
+			employee
+		}
+	});
 }
 

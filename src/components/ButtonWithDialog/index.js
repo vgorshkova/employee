@@ -91,7 +91,6 @@ export default class ButtonWithDialog extends React.Component {
 	};
 
 	onAction = () => {
-		debugger;
 		if (this.props.mode === Mode.delete || this.validate()) {
 			this.props.onAction(this.state.item);
 			return true;

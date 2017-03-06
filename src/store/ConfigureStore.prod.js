@@ -1,11 +1,25 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga'
 import rootReducer from '../reducers';
+import { routerMiddleware } from 'react-router-redux';
+import rootSaga from '../sagas'
 
-const configureStore = preloadedState => createStore(
-	rootReducer,
-	preloadedState,
-	applyMiddleware(thunk)
-);
+const configureStore = ( history, preloadedState ) => {
+	const sagaMiddleware = createSagaMiddleware()
+
+	const middleware = applyMiddleware(
+		sagaMiddleware,
+		routerMiddleware( history ));
+
+	const store = createStore(
+		rootReducer,
+		preloadedState,
+		middleware
+	);
+
+	sagaMiddleware.run(rootSaga);
+
+	return store;
+};
 
 export default configureStore;

@@ -13,7 +13,7 @@ export function findItemById( items, id, propName ) {
 		const findItem = items.filter( item => (item.id == id));
 
 		if (propName)
-			return findItem && findItem[0][propName];
+			return findItem[0] && findItem[0][propName];
 		else
 			return findItem;
 	}

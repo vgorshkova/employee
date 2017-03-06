@@ -13,8 +13,8 @@
       "id": 3
     },
     {
-      "name": "fgdfgdf",
-      "id": 4
+      "name": "new one",
+      "id": 6
     }
   ],
   "employees": [
@@ -22,7 +22,8 @@
       "id": 1,
       "firstName": "Ivan",
       "lastName": "Ivanov",
-      "departmentId": "1"
+      "departmentId": "1",
+      "departmentName": "Cool dep"
     },
     {
       "id": 2,
@@ -32,18 +33,38 @@
       "departmentName": "Cool dep"
     },
     {
-      "lastName": "i",
-      "firstName": "i",
+      "lastName": "John",
+      "firstName": "Winter",
       "departmentName": "",
-      "departmentId": "2",
-      "id": 3
+      "departmentId": "1",
+      "id": 4
     },
     {
-      "lastName": "efd",
-      "firstName": "erd",
-      "departmentName": "Cool dep",
-      "departmentId": "4",
-      "id": 4
+      "lastName": "c",
+      "firstName": "c",
+      "departmentName": "Department 2",
+      "departmentId": "1",
+      "id": 6
+    },
+    {
+      "lastName": "f",
+      "firstName": "f",
+      "departmentName": "Department 5",
+      "departmentId": "default",
+      "id": 7
+    },
+    {
+      "lastName": "r",
+      "firstName": "r",
+      "departmentName": "Department 5",
+      "departmentId": "default",
+      "id": 8
+    },
+    {
+      "lastName": "d",
+      "firstName": "d",
+      "departmentName": "",
+      "id": 9
     }
   ]
 }

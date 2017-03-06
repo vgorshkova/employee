@@ -7,7 +7,7 @@ const dist              = path.resolve ( './dist' );
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: path.join(__dirname, 'src/index.jsx'),
   resolve: {
     modules: [
