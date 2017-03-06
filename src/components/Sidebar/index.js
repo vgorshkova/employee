@@ -1,23 +1,33 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { browserHistory } from 'react-router';
+import { Nav, NavItem } from 'react-bootstrap'
 import s from './styles.less';
 
 function Sidebar() {
+	const handleSelect = (selectedKey) => {
+		switch (selectedKey) {
+			case 1:
+				browserHistory.push('/departments');
+				break;
+			case 2:
+				browserHistory.push('/employees');
+				break;
+		}
+	};
+
 	return (
-		<ListGroup className={s.listGroup}>
-			<Link className={s.link} to="/departments">
-				<ListGroupItem className={s.listGroupItem}>
+		<Nav bsStyle="pills" stacked onSelect={handleSelect} >
+
+				<NavItem eventKey={1} >
 					Departments
-				</ListGroupItem>
-			</Link>
-			<Link className={s.link} to="/employees">
-				<ListGroupItem className={s.listGroupItem}>
+				</NavItem>
+
+				<NavItem eventKey={2} >
 					Employees
-				</ListGroupItem>
-			</Link>
-		</ListGroup>
-	);
+				</NavItem>
+
+		</Nav>
+	)
 }
 
 export default Sidebar;
