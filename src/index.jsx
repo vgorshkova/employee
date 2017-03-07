@@ -13,7 +13,7 @@ const store = configureStore(browserHistory);
 const router = createRoutes(browserHistory, store);
 
 render((
-	<Provider store={store}>
-		{router}
-	</Provider>
+  <Provider store={store}>
+    {router}
+  </Provider>
 ), document.getElementById('app-root'));

@@ -6,37 +6,37 @@ import { departmentsActions } from '../actions';
 import { departmentOptions } from '../constants/options';
 
 class DepartmentContainer extends React.Component {
-	componentWillMount() {
-		this.props.onGetAllEmployees();
-	}
+  componentWillMount() {
+    this.props.onGetAllEmployees();
+  }
 
-	render() {
-		const { departments, onCreate, onDelete,  onUpdate } = this.props;
+  render() {
+    const { departments, onCreate, onDelete,  onUpdate } = this.props;
 
-		return (
-			<DocumentTitle title="Departments">
-				<CommonTable
-					title="Departments list"
-					items={departments}
-					fieldsOptions={departmentOptions}
-					onCreateItem={onCreate}
-					onDeleteItem={onDelete}
-					onUpdateItem={onUpdate}
-				/>
-			</DocumentTitle>
-		);
-	}
+    return (
+      <DocumentTitle title="Departments">
+        <CommonTable
+          title="Departments list"
+          items={departments}
+          fieldsOptions={departmentOptions}
+          onCreateItem={onCreate}
+          onDeleteItem={onDelete}
+          onUpdateItem={onUpdate}
+        />
+      </DocumentTitle>
+    );
+  }
 }
 
 function mapStateToProps({departments}) {
-	return {
-		departments,
-	};
+  return {
+    departments,
+  };
 }
 
 export default connect(mapStateToProps, {
-	onCreate: departmentsActions.createDepartment,
-	onGetAllEmployees: departmentsActions.getDepartments,
-	onUpdate: departmentsActions.updateDepartment,
-	onDelete: departmentsActions.deleteDepartment,
+  onCreate: departmentsActions.createDepartment,
+  onGetAllEmployees: departmentsActions.getDepartments,
+  onUpdate: departmentsActions.updateDepartment,
+  onDelete: departmentsActions.deleteDepartment,
 })(DepartmentContainer);

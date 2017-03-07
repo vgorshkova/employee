@@ -5,30 +5,30 @@ import { routerMiddleware, push } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas'
 
-const configureStore = ( history, preloadedState ) => {
-	const sagaMiddleware = createSagaMiddleware()
+const configureStore = (history, preloadedState) => {
+  const sagaMiddleware = createSagaMiddleware()
 
-	const middleware = applyMiddleware(
-		sagaMiddleware,
-		routerMiddleware( history ));
+  const middleware = applyMiddleware(
+    sagaMiddleware,
+    routerMiddleware(history));
 
-	const store = createStore(
-		rootReducer,
-		preloadedState,
-		composeWithDevTools(middleware)
-	);
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    composeWithDevTools(middleware)
+  );
 
-	if (module.hot) {
-		// Enable Webpack hot module replacement for reducers
-		module.hot.accept('../reducers', () => {
-			const nextRootReducer = require('../reducers').default
-			store.replaceReducer(nextRootReducer)
-		})
-	}
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default
+      store.replaceReducer(nextRootReducer)
+    })
+  }
 
-	sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
-	return store;
+  return store;
 };
 
 export default configureStore;

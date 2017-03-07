@@ -10,15 +10,15 @@ import Sidebar from './Sidebar';
 import Spinner from './Spinner';
 
 export {
-	ButtonWithDialog,
-	CommonTable,
-	CommonTableTitle,
-	ContextGrid,
-	FieldGroup,
-	FormDialog,
-	Header,
-	SelectGroup,
-	Sidebar,
-	Spinner,
+  ButtonWithDialog,
+  CommonTable,
+  CommonTableTitle,
+  ContextGrid,
+  FieldGroup,
+  FormDialog,
+  Header,
+  SelectGroup,
+  Sidebar,
+  Spinner,
 };
 

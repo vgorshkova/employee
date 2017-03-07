@@ -22,16 +22,24 @@
 }
 
 @keyframes color-lighter {
-  0% { background-color: @backgroundColor;}
-  100% { background-color: lighten(@backgroundColor, 10%);}
+  0% {
+    background-color: @backgroundColor;
+  }
+  100% {
+    background-color: lighten(@backgroundColor, 10%);
+  }
 }
 
 @keyframes color-darken {
-  0% { background-color: @backgroundColor;}
-  100% { background-color: darken(@backgroundColor, 10%);}
+  0% {
+    background-color: @backgroundColor;
+  }
+  100% {
+    background-color: darken(@backgroundColor, 10%);
+  }
 }
 
-.link{
+.link {
   &:hover {
     text-decoration: none;
     color: lighten(@text-color, 60%);

@@ -4,8 +4,8 @@ import EmployeeContainer from './EmployeeContainer';
 import Home from './Home';
 
 export {
-	AppContainer,
-	DepartmentContainer,
-	EmployeeContainer,
-	Home,
+  AppContainer,
+  DepartmentContainer,
+  EmployeeContainer,
+  Home,
 };

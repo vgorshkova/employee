@@ -1,12 +1,12 @@
 export const mode = {
-	create: 'create',
-	update: 'update',
-	delete: 'delete',
-	cancel: 'cancel',
+  create: 'create',
+  update: 'update',
+  delete: 'delete',
+  cancel: 'cancel',
 };
 
 export const optionsType = {
-	select: 'select',
+  select: 'select',
 };
 
 export const defaultSelectValue = 'default';
