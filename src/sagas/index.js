@@ -1,15 +1,15 @@
 import {
-	SEND_REQUEST,
-	RECEIVE_REQUEST,
+  SEND_REQUEST,
+  RECEIVE_REQUEST,
   ADD_DEPARTMENT,
-	EDIT_DEPARTMENT,
-	SET_DEPARTMENTS,
-	GET_DEPARTMENTS,
-	DEPARTMENTS_RECEIVED,
-	CREATE_DEPARTMENT,
-	DELETE_DEPARTMENT,
-	UPDATE_DEPARTMENT,
-	REMOVE_DEPARTMENT,
+  EDIT_DEPARTMENT,
+  SET_DEPARTMENTS,
+  GET_DEPARTMENTS,
+  DEPARTMENTS_RECEIVED,
+  CREATE_DEPARTMENT,
+  DELETE_DEPARTMENT,
+  UPDATE_DEPARTMENT,
+  REMOVE_DEPARTMENT,
   SET_EMPLOYEES,
   ADD_EMPLOYEE,
   REMOVE_EMPLOYEE,
@@ -19,98 +19,103 @@ import {
   DELETE_EMPLOYEE,
   UPDATE_EMPLOYEE,
 } from '../constants/ActionTypes';
-import { put, call, takeEvery } from 'redux-saga/effects'
+import { put, call, takeEvery } from 'redux-saga/effects';
 import * as api from '../services/api';
+import * as actions from '../actions';
 
-function* fetchDepartments(action) {
-	yield put({ type: SEND_REQUEST });
-	const { response, error } = yield call( api.fetchDepartmentsApi );
-	if (response)
-		yield put({ type: SET_DEPARTMENTS, payload: { departments: response.data }});
-	else
-		yield put(console.error(error));
-	yield put({ type: RECEIVE_REQUEST });
+export function* fetchDepartments() {
+  yield put(actions.appActions.sendRequest());
+  try {
+    const { response } = yield call(api.fetchDepartmentsApi);
+    yield put(actions.departmentsActions.setDepartments(response.data));
+  }
+  catch (error) {
+    yield put(console.error(error));
+  }
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchCreateDepartment(action) {
-	yield put({ type: SEND_REQUEST });
-	const { response, error } = yield call( api.fetchCreateDepartmentApi, action.payload.department );
-	if (response)
-		yield put({ type: ADD_DEPARTMENT, payload: { department: response.data }});
-	else
-		yield put(console.error(error));
-	yield put({ type: RECEIVE_REQUEST });
+export function* fetchCreateDepartment(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response } = yield call(api.fetchCreateDepartmentApi, action.payload.department);
+  try {
+    yield put(actions.departmentsActions.addDepartment(response.data));
+  }
+  catch (error) {
+    yield put(console.error(error));
+  }
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchDeleteDepartment(action) {
-	yield put({ type: SEND_REQUEST });
-	const { response, error } = yield call( api.fetchDeleteDepartmentApi, action.payload.id );
-	if (response)
-		yield put({ type: REMOVE_DEPARTMENT, payload: { id: action.payload.id }});
-	else
-		yield put(console.error(error));
-	yield put({ type: RECEIVE_REQUEST });
+export function* fetchDeleteDepartment(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchDeleteDepartmentApi, action.payload.id);
+  if (response)
+    yield put(actions.departmentsActions.removeDepartment(action.payload.id));
+  else
+    yield put(console.error(error));
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchUpdateDepartment(action) {
-	yield put({ type: SEND_REQUEST });
-	const { response, error } = yield call( api.fetchUpdateDepartmentApi, action.payload.department );
-	if (response)
-		yield put({ type: EDIT_DEPARTMENT, payload: { department: action.payload.department }});
-	else
-		yield put(console.error(error));
-	yield put({ type: RECEIVE_REQUEST });
+export function* fetchUpdateDepartment(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchUpdateDepartmentApi, action.payload.department);
+  if (response)
+    yield put(actions.departmentsActions.editDepartment(action.payload.department));
+  else
+    yield put(console.error(error));
+  yield put(actions.appActions.receiveRequest());
 }
 
 // Employee
-function* fetchEmployees(action) {
-  yield put({ type: SEND_REQUEST });
-  const { response, error } = yield call( api.fetchEmployeesApi );
+export function* fetchEmployees() {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchEmployeesApi);
   if (response)
-    yield put({ type: SET_EMPLOYEES, payload: { employees: response.data }});
+    yield put(actions.employeesActions.setEmployees(response.data));
   else
     yield put(console.error(error));
-  yield put({ type: RECEIVE_REQUEST });
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchCreateEmployee(action) {
-  yield put({ type: SEND_REQUEST });
-  const { response, error } = yield call( api.fetchCreateEmployeeApi, action.payload.employee );
+export function* fetchCreateEmployee(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchCreateEmployeeApi, action.payload.employee);
   if (response)
-    yield put({ type: ADD_EMPLOYEE, payload: { employee: response.data }});
+    yield put(actions.employeesActions.addEmployee(response.data));
   else
     yield put(console.error(error));
-  yield put({ type: RECEIVE_REQUEST });
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchDeleteEmployee(action) {
-  yield put({ type: SEND_REQUEST });
-  const { response, error } = yield call( api.fetchDeleteEmployeeApi, action.payload.id );
+export function* fetchDeleteEmployee(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchDeleteEmployeeApi, action.payload.id);
   if (response)
-    yield put({ type: REMOVE_EMPLOYEE, payload: { id: action.payload.id }});
+    yield put(actions.employeesActions.removeEmployee(action.payload.id));
   else
     yield put(console.error(error));
-  yield put({ type: RECEIVE_REQUEST });
+  yield put(actions.appActions.receiveRequest());
 }
 
-function* fetchUpdateEmployee(action) {
-  yield put({ type: SEND_REQUEST });
-  const { response, error } = yield call( api.fetchUpdateEmployeeApi, action.payload.employee );
+export function* fetchUpdateEmployee(action) {
+  yield put(actions.appActions.sendRequest());
+  const { response, error } = yield call(api.fetchUpdateEmployeeApi, action.payload.employee);
   if (response)
-    yield put({ type: EDIT_EMPLOYEE, payload: { employee: action.payload.employee }});
+    yield put(actions.employeesActions.editEmployee(action.payload.employee));
   else
     yield put(console.error(error));
-  yield put({ type: RECEIVE_REQUEST });
+  yield put(actions.appActions.receiveRequest());
 }
 
 export default function* rootSaga() {
-	yield	takeEvery(GET_DEPARTMENTS, fetchDepartments);
-	yield	takeEvery(CREATE_DEPARTMENT, fetchCreateDepartment);
-	yield	takeEvery(DELETE_DEPARTMENT, fetchDeleteDepartment);
-	yield	takeEvery(UPDATE_DEPARTMENT, fetchUpdateDepartment);
+  yield  takeEvery(GET_DEPARTMENTS, fetchDepartments);
+  yield  takeEvery(CREATE_DEPARTMENT, fetchCreateDepartment);
+  yield  takeEvery(DELETE_DEPARTMENT, fetchDeleteDepartment);
+  yield  takeEvery(UPDATE_DEPARTMENT, fetchUpdateDepartment);
 
-  yield	takeEvery(GET_EMPLOYEES, fetchEmployees);
-  yield	takeEvery(CREATE_EMPLOYEE, fetchCreateEmployee);
-  yield	takeEvery(DELETE_EMPLOYEE, fetchDeleteEmployee);
-  yield	takeEvery(UPDATE_EMPLOYEE, fetchUpdateEmployee);
+  yield  takeEvery(GET_EMPLOYEES, fetchEmployees);
+  yield  takeEvery(CREATE_EMPLOYEE, fetchCreateEmployee);
+  yield  takeEvery(DELETE_EMPLOYEE, fetchDeleteEmployee);
+  yield  takeEvery(UPDATE_EMPLOYEE, fetchUpdateEmployee);
 }

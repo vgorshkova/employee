@@ -7,7 +7,7 @@ import { departmentOptions } from '../constants/options';
 
 class DepartmentContainer extends React.Component {
   componentWillMount() {
-    this.props.onGetAllEmployees();
+    this.props.onGetAll();
   }
 
   render() {
@@ -36,7 +36,7 @@ function mapStateToProps({departments}) {
 
 export default connect(mapStateToProps, {
   onCreate: departmentsActions.createDepartment,
-  onGetAllEmployees: departmentsActions.getDepartments,
+  onGetAll: departmentsActions.getDepartments,
   onUpdate: departmentsActions.updateDepartment,
   onDelete: departmentsActions.deleteDepartment,
 })(DepartmentContainer);

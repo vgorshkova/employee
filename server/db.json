@@ -2,18 +2,18 @@
   "departments": [
     {
       "id": 1,
-      "name": "Department 5"
+      "name": "Department 5 five"
     },
     {
-      "name": "Department 2",
+      "name": "Department 2 two",
       "id": 2
     },
     {
-      "name": "Cool dep",
+      "name": "Cool dep next",
       "id": 3
     },
     {
-      "name": "hjkhjk",
+      "name": "always new",
       "id": 4
     }
   ],
@@ -40,10 +40,10 @@
       "id": 4
     },
     {
-      "lastName": "jkjk",
-      "firstName": "gbhjn",
+      "lastName": "Dima",
+      "firstName": "Suvorov",
       "departmentName": "",
-      "departmentId": "2",
+      "departmentId": "3",
       "id": 5
     }
   ]
