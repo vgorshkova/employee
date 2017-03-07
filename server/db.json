@@ -13,8 +13,8 @@
       "id": 3
     },
     {
-      "name": "new one",
-      "id": 6
+      "name": "New 2",
+      "id": 7
     }
   ],
   "employees": [
@@ -38,33 +38,6 @@
       "departmentName": "",
       "departmentId": "1",
       "id": 4
-    },
-    {
-      "lastName": "c",
-      "firstName": "c",
-      "departmentName": "Department 2",
-      "departmentId": "1",
-      "id": 6
-    },
-    {
-      "lastName": "f",
-      "firstName": "f",
-      "departmentName": "Department 5",
-      "departmentId": "default",
-      "id": 7
-    },
-    {
-      "lastName": "r",
-      "firstName": "r",
-      "departmentName": "Department 5",
-      "departmentId": "default",
-      "id": 8
-    },
-    {
-      "lastName": "d",
-      "firstName": "d",
-      "departmentName": "",
-      "id": 9
     }
   ]
 }
