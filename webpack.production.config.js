@@ -1,12 +1,13 @@
-const webpack           = require( 'webpack' );
-const path              = require ( 'path' );
-const dist              = path.resolve ( './dist' );
+'use strict';
 
+var path = require('path');
+var webpack = require('webpack');
+const dist = path.resolve('./dist');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: path.join(__dirname, 'src/index.jsx'),
+  entry: [path.join(__dirname, 'src/index.jsx')],
   resolve: {
     modules: [
       "node_modules",
@@ -25,10 +26,10 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('[name].[hash].css'),
+    new webpack.optimize.UglifyJsPlugin({warnings: false, mangle: false, sourcemap: false}),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
   module: {
@@ -39,7 +40,7 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
-    },{
+    }, {
       test: /\.less$/,
       loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]!less-loader',
       include: [

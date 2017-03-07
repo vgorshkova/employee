@@ -14,7 +14,7 @@
     "body-parser": "1.15.0",
     "es6-promise": "^4.0.5",
     "express": "~4.13.4",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-document-title": "^2.0.2",
